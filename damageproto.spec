@@ -4,7 +4,7 @@
 #
 Name     : damageproto
 Version  : 1.2.1
-Release  : 7
+Release  : 8
 URL      : http://xorg.freedesktop.org/releases/individual/proto/damageproto-1.2.1.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/proto/damageproto-1.2.1.tar.bz2
 Summary  : Damage extension headers
@@ -24,6 +24,7 @@ extension.  Library and server implementations are separate.
 %package dev
 Summary: dev components for the damageproto package.
 Group: Development
+Provides: damageproto-devel
 
 %description dev
 dev components for the damageproto package.
@@ -41,10 +42,12 @@ doc components for the damageproto package.
 %setup -q -n damageproto-1.2.1
 
 %build
+export LANG=C
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost
@@ -61,7 +64,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 /usr/include/X11/extensions/damageproto.h
 /usr/include/X11/extensions/damagewire.h
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/pkgconfig/damageproto.pc
 
 %files doc
 %defattr(-,root,root,-)
